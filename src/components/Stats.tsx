@@ -20,7 +20,7 @@ function Stats({ items }: StatsProps) {
 	return (
 		<StyledStats>
 			<em>
-				{percentage === "0.00" ?
+				{percentage === "0.00" || percentage === "NaN" ?
 					"Start adding items to your list."
 				: percentage === "100.00" ?
 					"You got everything ready! Time to go."
