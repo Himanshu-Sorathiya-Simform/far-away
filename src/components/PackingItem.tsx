@@ -3,6 +3,7 @@ import type { Item } from "../types/types.ts";
 
 interface PackingItemProps {
 	item: Item;
+	onDeleteItem: (id: number) => void;
 }
 
 const StyledPackingItem = styled.li<{ $packed?: boolean }>`
@@ -23,14 +24,16 @@ const StyledPackingItemButton = styled.button`
 	transform: translateY(2px);
 `;
 
-function PackingItem({ item }: PackingItemProps) {
+function PackingItem({ item, onDeleteItem }: PackingItemProps) {
 	return (
 		<StyledPackingItem $packed={item.packed}>
 			<span>
 				{item.quantity} {item.description}
 			</span>
 
-			<StyledPackingItemButton>❌</StyledPackingItemButton>
+			<StyledPackingItemButton onClick={() => onDeleteItem(item.id)}>
+				❌
+			</StyledPackingItemButton>
 		</StyledPackingItem>
 	);
 }

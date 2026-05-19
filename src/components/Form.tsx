@@ -8,7 +8,7 @@ import {
 } from "./FormElements.tsx";
 
 interface FormProps {
-	onAddItems: (item: Item) => void;
+	onAddItem: (item: Item) => void;
 }
 
 const StyledForm = styled.form`
@@ -25,7 +25,7 @@ const StyledH3 = styled.h3`
 	font-size: 2.4rem;
 `;
 
-function Form({ onAddItems }: FormProps) {
+function Form({ onAddItem }: FormProps) {
 	const [description, setDescription] = useState("");
 	const [quantity, setQuantity] = useState(1);
 
@@ -41,7 +41,7 @@ function Form({ onAddItems }: FormProps) {
 			packed: false,
 		};
 
-		onAddItems(newItem);
+		onAddItem(newItem);
 		setDescription("");
 		setQuantity(1);
 	};

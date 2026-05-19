@@ -4,6 +4,7 @@ import Form from "./components/Form.tsx";
 import Logo from "./components/Logo.tsx";
 import PackingList from "./components/PackingList.tsx";
 import Stats from "./components/Stats.tsx";
+import { initialItems } from "./data/data.ts";
 import type { Item } from "./types/types.ts";
 
 const StyledApp = styled.div`
@@ -15,19 +16,26 @@ const StyledApp = styled.div`
 `;
 
 function App() {
-	const [items, setItems] = useState<Item[]>([]);
+	const [items, setItems] = useState<Item[]>(initialItems);
 
 	function handleAddItems(item: Item) {
 		setItems((items) => [...items, item]);
+	}
+
+	function handleDeleteItem(id: number) {
+		setItems((items) => items.filter((item) => item.id !== id));
 	}
 
 	return (
 		<StyledApp>
 			<Logo />
 
-			<Form onAddItems={handleAddItems} />
+			<Form onAddItem={handleAddItems} />
 
-			<PackingList items={items} />
+			<PackingList
+				items={items}
+				onDeleteItem={handleDeleteItem}
+			/>
 
 			<Stats />
 		</StyledApp>
