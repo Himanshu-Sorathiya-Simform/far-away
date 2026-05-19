@@ -7,8 +7,8 @@ interface FormProps {
 	onAddItem: (item: Item) => void;
 }
 
-const Styled = styled.form`
-	background-color: #e5771f;
+const StyledForm = styled.form`
+	background-color: var(--color-form);
 	padding: 2.8rem 0;
 	display: flex;
 	align-items: center;
@@ -43,7 +43,7 @@ function Form({ onAddItem }: FormProps) {
 	};
 
 	return (
-		<Styled onSubmit={handleSubmit}>
+		<StyledForm onSubmit={handleSubmit}>
 			<StyledH3>What do you need for your trip?</StyledH3>
 
 			<StyledSelect
@@ -61,7 +61,7 @@ function Form({ onAddItem }: FormProps) {
 			/>
 
 			<StyledButton>Add</StyledButton>
-		</Styled>
+		</StyledForm>
 	);
 }
 

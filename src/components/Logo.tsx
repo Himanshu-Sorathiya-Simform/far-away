@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledH1 = styled.h1`
 	padding: 2.4rem 0;
-	background-color: #f4a226;
+	background-color: var(--color-logo);
 	font-family: "Monoton", sans-serif;
 	font-size: 8rem;
 	text-align: center;

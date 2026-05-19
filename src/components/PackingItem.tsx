@@ -30,7 +30,7 @@ const StyledPackingItemButton = styled.button`
 const StyledCheckbox = styled.input.attrs(() => ({ type: "checkbox" }))`
 	height: 2rem;
 	width: 2rem;
-	accent-color: #e5771f;
+	accent-color: var(--color-logo);
 	cursor: pointer;
 `;
 

@@ -2,8 +2,8 @@ import styled, { css } from "styled-components";
 
 const commonStyles = css`
 	padding: 1.2rem 3.2rem;
-	color: #5a3e2b;
-	background-color: #ffebb3;
+	color: var(--color-list);
+	background-color: var(--color-accent);
 	font-family: inherit;
 	font-weight: 700;
 	font-size: 1.8rem;
@@ -15,7 +15,7 @@ const commonStyles = css`
 const StyledButton = styled.button`
 	${commonStyles}
 
-	background-color: #76c7ad;
+	background-color: var(--color-stats);
 	text-transform: uppercase;
 `;
 

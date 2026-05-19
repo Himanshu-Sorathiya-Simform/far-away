@@ -27,7 +27,7 @@ function App() {
 	}
 
 	function handleClearList() {
-		setItems([])
+		setItems([]);
 	}
 
 	function handleTogglePackedItem(id: number) {

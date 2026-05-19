@@ -7,7 +7,7 @@ interface StatsProps {
 
 const StyledStats = styled.footer`
 	padding: 3.2rem 0;
-	background-color: #76c7ad;
+	background-color: var(--color-stats);
 	font-weight: 700;
 	text-align: center;
 `;
