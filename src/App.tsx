@@ -26,6 +26,14 @@ function App() {
 		setItems((items) => items.filter((item) => item.id !== id));
 	}
 
+	function handleTogglePackedItem(id: number) {
+		setItems((items) =>
+			items.map((item) =>
+				item.id === id ? { ...item, packed: !item.packed } : item,
+			),
+		);
+	}
+
 	return (
 		<StyledApp>
 			<Logo />
@@ -35,6 +43,7 @@ function App() {
 			<PackingList
 				items={items}
 				onDeleteItem={handleDeleteItem}
+				onTogglePackedItem={handleTogglePackedItem}
 			/>
 
 			<Stats />

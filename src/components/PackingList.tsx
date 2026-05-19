@@ -5,6 +5,7 @@ import PackingItem from "./PackingItem.tsx";
 interface PackingListProps {
 	items: Item[];
 	onDeleteItem: (id: number) => void;
+	onTogglePackedItem: (id: number) => void;
 }
 
 const StyledPackingListContainer = styled.section`
@@ -32,7 +33,7 @@ const StyledPackingList = styled.ul`
 	overflow: auto;
 `;
 
-function PackingList({ items, onDeleteItem }: PackingListProps) {
+function PackingList({ items, onDeleteItem, onTogglePackedItem }: PackingListProps) {
 	return (
 		<StyledPackingListContainer>
 			<StyledPackingList>
@@ -40,6 +41,7 @@ function PackingList({ items, onDeleteItem }: PackingListProps) {
 					<PackingItem
 						item={item}
 						onDeleteItem={onDeleteItem}
+						onTogglePackedItem={onTogglePackedItem}
 					/>
 				))}
 			</StyledPackingList>

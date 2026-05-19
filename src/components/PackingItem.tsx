@@ -4,13 +4,16 @@ import type { Item } from "../types/types.ts";
 interface PackingItemProps {
 	item: Item;
 	onDeleteItem: (id: number) => void;
+	onTogglePackedItem: (id: number) => void;
 }
 
-const StyledPackingItem = styled.li<{ $packed?: boolean }>`
+const StyledPackingItem = styled.li`
 	display: flex;
 	align-items: center;
 	gap: 1.2rem;
+`;
 
+const StyledPackingItemDetail = styled.span<{ $packed?: boolean }>`
 	text-decoration: ${(props) => [props.$packed ? "line-through" : "none"]};
 `;
 
@@ -24,12 +27,24 @@ const StyledPackingItemButton = styled.button`
 	transform: translateY(2px);
 `;
 
-function PackingItem({ item, onDeleteItem }: PackingItemProps) {
+const StyledCheckbox = styled.input.attrs(() => ({ type: "checkbox" }))`
+	height: 2rem;
+	width: 2rem;
+	accent-color: #e5771f;
+	cursor: pointer;
+`;
+
+function PackingItem({ item, onDeleteItem, onTogglePackedItem }: PackingItemProps) {
 	return (
-		<StyledPackingItem $packed={item.packed}>
-			<span>
+		<StyledPackingItem>
+			<StyledCheckbox
+				checked={item.packed}
+				onClick={() => onTogglePackedItem(item.id)}
+			/>
+
+			<StyledPackingItemDetail $packed={item.packed}>
 				{item.quantity} {item.description}
-			</span>
+			</StyledPackingItemDetail>
 
 			<StyledPackingItemButton onClick={() => onDeleteItem(item.id)}>
 				❌
