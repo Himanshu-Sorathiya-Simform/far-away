@@ -1,5 +1,7 @@
+import { useState } from "react";
 import styled from "styled-components";
 import type { Item } from "../types/types.ts";
+import { StyledFormSelect } from "./FormElements.tsx";
 import PackingItem from "./PackingItem.tsx";
 
 interface PackingListProps {
@@ -34,10 +36,22 @@ const StyledPackingList = styled.ul`
 `;
 
 function PackingList({ items, onDeleteItem, onTogglePackedItem }: PackingListProps) {
+	const [sortBy, setSortBy] = useState("input");
+
+	let sortedItems: Item[] = [];
+
+	if (sortBy === "input") sortedItems = items;
+	else if (sortBy === "description")
+		sortedItems = items.toSorted((a, b) =>
+			a.description.localeCompare(b.description),
+		);
+	else if (sortBy === "packed")
+		sortedItems = items.toSorted((a, b) => +a.packed - +b.packed);
+
 	return (
 		<StyledPackingListContainer>
 			<StyledPackingList>
-				{items.map((item) => (
+				{sortedItems.map((item) => (
 					<PackingItem
 						item={item}
 						onDeleteItem={onDeleteItem}
@@ -45,6 +59,15 @@ function PackingList({ items, onDeleteItem, onTogglePackedItem }: PackingListPro
 					/>
 				))}
 			</StyledPackingList>
+
+			<StyledFormSelect
+				value={sortBy}
+				onChange={(e) => setSortBy(e.target.value)}
+			>
+				<option value="input">By Input Order</option>
+				<option value="description">By Description</option>
+				<option value="packed">By Packed Status</option>
+			</StyledFormSelect>
 		</StyledPackingListContainer>
 	);
 }
