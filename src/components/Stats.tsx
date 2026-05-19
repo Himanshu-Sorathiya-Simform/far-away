@@ -10,7 +10,9 @@ const StyledStats = styled.footer`
 function Stats() {
 	return (
 		<StyledStats>
-			<em >You have X items in your bag, and you already packed X (X%) items.</em>
+			<em>
+				You have X items in your bag, and you already packed X (X%) items.
+			</em>
 		</StyledStats>
 	);
 }

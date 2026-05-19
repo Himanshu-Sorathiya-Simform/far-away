@@ -23,9 +23,9 @@ const StyledFormSelect = styled.select`
 	${commonStyles}
 `;
 
-const StyledFormInput = styled.input.attrs((props) => ({
-	type: props.type,
-	placeholder: props.placeholder,
+const StyledFormInput = styled.input.attrs(() => ({
+	type: "text",
+	placeholder: "Item...",
 }))`
 	${commonStyles}
 `;

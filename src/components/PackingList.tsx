@@ -1,6 +1,10 @@
 import styled from "styled-components";
-import { initialItems } from "../data/data.ts";
+import type { Item } from "../types/types.ts";
 import PackingItem from "./PackingItem.tsx";
+
+interface PackingListProps {
+	items: Item[];
+}
 
 const StyledPackingListContainer = styled.section`
 	display: flex;
@@ -26,11 +30,11 @@ const StyledPackingList = styled.ul`
 	overflow: auto;
 `;
 
-function PackingList() {
+function PackingList({ items }: PackingListProps) {
 	return (
 		<StyledPackingListContainer>
 			<StyledPackingList>
-				{initialItems.map((item) => (
+				{items.map((item) => (
 					<PackingItem item={item} />
 				))}
 			</StyledPackingList>

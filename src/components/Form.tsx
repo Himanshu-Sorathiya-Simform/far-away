@@ -1,9 +1,15 @@
+import { type SubmitEventHandler, useState } from "react";
 import styled from "styled-components";
+import type { Item } from "../types/types.ts";
 import {
 	StyledFormButton,
 	StyledFormInput,
 	StyledFormSelect,
 } from "./FormElements.tsx";
+
+interface FormProps {
+	onAddItems: (item: Item) => void;
+}
 
 const StyledForm = styled.form`
 	background-color: #e5771f;
@@ -19,20 +25,43 @@ const StyledH3 = styled.h3`
 	font-size: 2.4rem;
 `;
 
-function Form() {
+function Form({ onAddItems }: FormProps) {
+	const [description, setDescription] = useState("");
+	const [quantity, setQuantity] = useState(1);
+
+	const handleSubmit: SubmitEventHandler<HTMLFormElement> = function (e) {
+		e.preventDefault();
+
+		if (!description) return;
+
+		const newItem: Item = {
+			id: Date.now(),
+			quantity,
+			description,
+			packed: false,
+		};
+
+		onAddItems(newItem);
+		setDescription("");
+		setQuantity(1);
+	};
+
 	return (
-		<StyledForm>
+		<StyledForm onSubmit={handleSubmit}>
 			<StyledH3>What do you need for your trip?</StyledH3>
 
-			<StyledFormSelect>
+			<StyledFormSelect
+				value={quantity}
+				onChange={(e) => setQuantity(+e.target.value)}
+			>
 				{Array.from({ length: 20 }, (_, index) => index + 1).map((opt) => (
 					<option value={opt}>{opt}</option>
 				))}
 			</StyledFormSelect>
 
 			<StyledFormInput
-				type="text"
-				placeholder="Item..."
+				value={description}
+				onChange={(e) => setDescription(e.target.value)}
 			/>
 
 			<StyledFormButton>Add</StyledFormButton>
