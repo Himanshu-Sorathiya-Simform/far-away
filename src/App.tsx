@@ -46,7 +46,7 @@ function App() {
 				onTogglePackedItem={handleTogglePackedItem}
 			/>
 
-			<Stats />
+			<Stats items={items}/>
 		</StyledApp>
 	);
 }
