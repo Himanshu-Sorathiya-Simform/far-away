@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import Form from "./components/Form.tsx";
 import Logo from "./components/Logo.tsx";
 import PackingList from "./components/PackingList.tsx";
@@ -16,7 +16,16 @@ const StyledApp = styled.div`
 `;
 
 function App() {
+	const [theme, setTheme] = useState("theme1");
 	const [items, setItems] = useState<Item[]>(initialItems);
+
+	const themeObj = {
+		logo: `var(--color-${theme}-logo)`,
+		form: `var(--color-${theme}-form)`,
+		list: `var(--color-${theme}-list)`,
+		stats: `var(--color-${theme}-stats)`,
+		accent: `var(--color-${theme}-accent)`,
+	};
 
 	function handleAddItems(item: Item) {
 		setItems((items) => [...items, item]);
@@ -38,21 +47,30 @@ function App() {
 		);
 	}
 
+	function handleChangeTheme() {
+		setTheme((currTheme) => (currTheme === "theme1" ? "theme2" : "theme1"));
+	}
+
 	return (
-		<StyledApp>
-			<Logo />
+		<ThemeProvider theme={themeObj}>
+			<StyledApp>
+				<Logo />
 
-			<Form onAddItem={handleAddItems} />
+				<Form
+					onAddItem={handleAddItems}
+					onChangeTheme={handleChangeTheme}
+				/>
 
-			<PackingList
-				items={items}
-				onDeleteItem={handleDeleteItem}
-				onTogglePackedItem={handleTogglePackedItem}
-				onClearList={handleClearList}
-			/>
+				<PackingList
+					items={items}
+					onDeleteItem={handleDeleteItem}
+					onTogglePackedItem={handleTogglePackedItem}
+					onClearList={handleClearList}
+				/>
 
-			<Stats items={items} />
-		</StyledApp>
+				<Stats items={items} />
+			</StyledApp>
+		</ThemeProvider>
 	);
 }
 

@@ -5,10 +5,11 @@ import { StyledButton, StyledInput, StyledSelect } from "./StyledHelperElements.
 
 interface FormProps {
 	onAddItem: (item: Item) => void;
+	onChangeTheme: () => void;
 }
 
 const StyledForm = styled.form`
-	background-color: var(--color-form);
+	background-color: ${(props) => props.theme.form};
 	padding: 2.8rem 0;
 	display: flex;
 	align-items: center;
@@ -21,7 +22,7 @@ const StyledH3 = styled.h3`
 	font-size: 2.4rem;
 `;
 
-function Form({ onAddItem }: FormProps) {
+function Form({ onAddItem, onChangeTheme }: FormProps) {
 	const [description, setDescription] = useState("");
 	const [quantity, setQuantity] = useState(1);
 
@@ -61,6 +62,13 @@ function Form({ onAddItem }: FormProps) {
 			/>
 
 			<StyledButton>Add</StyledButton>
+
+			<StyledButton
+				type="button"
+				onClick={onChangeTheme}
+			>
+				Toggle
+			</StyledButton>
 		</StyledForm>
 	);
 }

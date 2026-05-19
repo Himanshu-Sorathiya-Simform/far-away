@@ -19,8 +19,8 @@ const StyledPackingListContainer = styled.section`
 	gap: 3.2rem;
 
 	padding: 4rem 0;
-	background-color: var(--color-list);
-	color: var(--color-accent);
+	background-color: ${(props) => props.theme.list};
+	color: ${(props) => props.theme.accent};
 	overflow: hidden;
 `;
 

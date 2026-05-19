@@ -1,11 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Monoton&family=Quicksand:wght@500;700&display=swap");
 
 :root {
-	--color-logo: #f4a226;
-	--color-form: #e5771f;
-	--color-list: #5a3e2b;
-	--color-stats: #76c7ad;
-	--color-accent: #ffebb3;
+	--color-theme1-logo: #f4a226;
+	--color-theme1-form: #e5771f;
+	--color-theme1-list: #5a3e2b;
+	--color-theme1-stats: #76c7ad;
+	--color-theme1-accent: #ffebb3;
+
+	--color-theme2-logo: #2d6a4f;
+	--color-theme2-form: #40916c;
+	--color-theme2-list: #1b4332;
+	--color-theme2-stats: #b7e4c7;
+	--color-theme2-accent: #d8f3dc;
 }
 
 * {
