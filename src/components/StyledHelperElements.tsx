@@ -12,22 +12,22 @@ const commonStyles = css`
 	cursor: pointer;
 `;
 
-const StyledFormButton = styled.button`
+const StyledButton = styled.button`
 	${commonStyles}
 
 	background-color: #76c7ad;
 	text-transform: uppercase;
 `;
 
-const StyledFormSelect = styled.select`
+const StyledSelect = styled.select`
 	${commonStyles}
 `;
 
-const StyledFormInput = styled.input.attrs(() => ({
+const StyledInput = styled.input.attrs(() => ({
 	type: "text",
 	placeholder: "Item...",
 }))`
 	${commonStyles}
 `;
 
-export { StyledFormButton, StyledFormInput, StyledFormSelect };
+export { StyledButton, StyledInput, StyledSelect };

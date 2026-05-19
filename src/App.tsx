@@ -26,6 +26,10 @@ function App() {
 		setItems((items) => items.filter((item) => item.id !== id));
 	}
 
+	function handleClearList() {
+		setItems([])
+	}
+
 	function handleTogglePackedItem(id: number) {
 		setItems((items) =>
 			items.map((item) =>
@@ -44,9 +48,10 @@ function App() {
 				items={items}
 				onDeleteItem={handleDeleteItem}
 				onTogglePackedItem={handleTogglePackedItem}
+				onClearList={handleClearList}
 			/>
 
-			<Stats items={items}/>
+			<Stats items={items} />
 		</StyledApp>
 	);
 }

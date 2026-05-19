@@ -1,17 +1,13 @@
 import { type SubmitEventHandler, useState } from "react";
 import styled from "styled-components";
 import type { Item } from "../types/types.ts";
-import {
-	StyledFormButton,
-	StyledFormInput,
-	StyledFormSelect,
-} from "./FormElements.tsx";
+import { StyledButton, StyledInput, StyledSelect } from "./StyledHelperElements.tsx";
 
 interface FormProps {
 	onAddItem: (item: Item) => void;
 }
 
-const StyledForm = styled.form`
+const Styled = styled.form`
 	background-color: #e5771f;
 	padding: 2.8rem 0;
 	display: flex;
@@ -47,25 +43,25 @@ function Form({ onAddItem }: FormProps) {
 	};
 
 	return (
-		<StyledForm onSubmit={handleSubmit}>
+		<Styled onSubmit={handleSubmit}>
 			<StyledH3>What do you need for your trip?</StyledH3>
 
-			<StyledFormSelect
+			<StyledSelect
 				value={quantity}
 				onChange={(e) => setQuantity(+e.target.value)}
 			>
 				{Array.from({ length: 20 }, (_, index) => index + 1).map((opt) => (
 					<option value={opt}>{opt}</option>
 				))}
-			</StyledFormSelect>
+			</StyledSelect>
 
-			<StyledFormInput
+			<StyledInput
 				value={description}
 				onChange={(e) => setDescription(e.target.value)}
 			/>
 
-			<StyledFormButton>Add</StyledFormButton>
-		</StyledForm>
+			<StyledButton>Add</StyledButton>
+		</Styled>
 	);
 }
 

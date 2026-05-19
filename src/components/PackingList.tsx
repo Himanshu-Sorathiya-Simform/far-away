@@ -1,13 +1,14 @@
 import { useState } from "react";
 import styled from "styled-components";
 import type { Item } from "../types/types.ts";
-import { StyledFormSelect } from "./FormElements.tsx";
 import PackingItem from "./PackingItem.tsx";
+import { StyledButton, StyledSelect } from "./StyledHelperElements.tsx";
 
 interface PackingListProps {
 	items: Item[];
 	onDeleteItem: (id: number) => void;
 	onTogglePackedItem: (id: number) => void;
+	onClearList: () => void;
 }
 
 const StyledPackingListContainer = styled.section`
@@ -35,7 +36,18 @@ const StyledPackingList = styled.ul`
 	overflow: auto;
 `;
 
-function PackingList({ items, onDeleteItem, onTogglePackedItem }: PackingListProps) {
+const StyledActionsContainer = styled.div`
+	display: flex;
+	align-content: center;
+	gap: 1rem;
+`;
+
+function PackingList({
+	items,
+	onDeleteItem,
+	onTogglePackedItem,
+	onClearList,
+}: PackingListProps) {
 	const [sortBy, setSortBy] = useState("input");
 
 	let sortedItems: Item[] = [];
@@ -60,14 +72,18 @@ function PackingList({ items, onDeleteItem, onTogglePackedItem }: PackingListPro
 				))}
 			</StyledPackingList>
 
-			<StyledFormSelect
-				value={sortBy}
-				onChange={(e) => setSortBy(e.target.value)}
-			>
-				<option value="input">By Input Order</option>
-				<option value="description">By Description</option>
-				<option value="packed">By Packed Status</option>
-			</StyledFormSelect>
+			<StyledActionsContainer>
+				<StyledSelect
+					value={sortBy}
+					onChange={(e) => setSortBy(e.target.value)}
+				>
+					<option value="input">By Input Order</option>
+					<option value="description">By Description</option>
+					<option value="packed">By Packed Status</option>
+				</StyledSelect>
+
+				<StyledButton onClick={onClearList}>Clear List</StyledButton>
+			</StyledActionsContainer>
 		</StyledPackingListContainer>
 	);
 }
