@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { initialItems } from "../data/data.ts";
+import PackingItem from "./PackingItem.tsx";
 
-const StyledPackingList = styled.div`
+const StyledPackingListContainer = styled.section`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -12,8 +14,28 @@ const StyledPackingList = styled.div`
 	color: #ffebb3;
 `;
 
+const StyledPackingList = styled.ul`
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	justify-content: center;
+	align-content: start;
+	gap: 1.2rem;
+
+	list-style: none;
+	width: 80%;
+	overflow: auto;
+`;
+
 function PackingList() {
-	return <StyledPackingList>LIST</StyledPackingList>;
+	return (
+		<StyledPackingListContainer>
+			<StyledPackingList>
+				{initialItems.map((item) => (
+					<PackingItem item={item} />
+				))}
+			</StyledPackingList>
+		</StyledPackingListContainer>
+	);
 }
 
 export default PackingList;
